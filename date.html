@@ -1,0 +1,59 @@
+<!DOCTYPE html PUBLIC "" "">
+<HTML><HEAD>
+<META content="IE=11.0000"
+http-equiv="X-UA-Compatible">
+<META http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<LINK href="date2_files/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh">
+<META name="GENERATOR" content="MSHTML 11.00.10570.1001"></HEAD>
+<BODY>
+<!-- The text field -->
+<INPUT id="date_field" type="text" size="50">
+<!-- The button used to copy the text -->
+<BUTTON onclick="copyToClipboard()">Update and Copy</BUTTON>
+<SCRIPT>
+/* Copy date and time to clipboard. */ 
+/* Author: Scott Morgan (scott@scottmorgan.ca), January 7, 2020. */ 
+
+   /* Write date to text field */ 
+   write_date();  
+   
+   function copyToClipboard() {
+     /* Write date update to text field */ 
+     write_date();
+     /* Get the text field */
+     var copyText = document.getElementById("date_field");
+     /* Select the text field */
+     copyText.select();
+     /* Copy the text inside the text field */
+     document.execCommand("copy");
+   }
+
+   function write_date() {
+     var ampm = "";
+     var d       = new Date();
+     var year    = d.getFullYear();
+     var month   = String(d.getMonth() + 1);
+     month = add_leading_zero(month);  
+     var date    = String(d.getDate());
+     date = add_leading_zero(date);  
+     var hours   = d.getHours();
+     if (hours > 12) {
+       hours = (hours - 12);
+       ampm = "pm"
+     } else {
+       ampm = "am";
+       hours = (hours === 0 ) ? hours = 12 : hours; 
+     }
+     var minutes = String(d.getMinutes());
+     minutes = add_leading_zero(minutes); 
+     var date_string = date + "/" + month + "/" + year + " " + hours + ":" + minutes + " " + ampm + " PST";
+     document.getElementById("date_field").value = date_string;
+   }
+
+   function add_leading_zero(date_element) {
+     return (date_element.length === 1) ? "0" + date_element : date_element;
+   }
+
+</SCRIPT>
+</BODY>
+</HTML>
