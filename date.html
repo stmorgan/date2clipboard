@@ -42,13 +42,14 @@ http-equiv="X-UA-Compatible">
      var month   = add_leading_zero(String(d.getMonth() + 1));  
      var date    = add_leading_zero(String(d.getDate()));  
      var hours   = d.getHours();
+     
+     if (hours < 12) { ampm  = "am";} else { ampm  = "pm"; }
      if (hours > 12) {
        hours = (hours - 12);
-       ampm  = "pm"
      } else {
-       ampm  = "am";
        hours = (hours === 0 ) ? hours = 12 : hours; 
      }
+    
      var minutes = add_leading_zero(String(d.getMinutes())); 
      var date_string = date + "/" + month + "/" + year + " " + hours + ":" + minutes + " " + ampm + " " + timezonecode;
      document.getElementById("date_field").value = date_string;
