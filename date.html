@@ -1,13 +1,18 @@
 <!DOCTYPE html PUBLIC "" "">
 <HTML><HEAD>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
 <META content="IE=11.0000"
 http-equiv="X-UA-Compatible">
 <META http-equiv="Content-Type" content="text/html; charset=windows-1252">
 <LINK href="date2_files/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh">
 <META name="GENERATOR" content="MSHTML 11.00.10570.1001"></HEAD>
+    <script src="moment-with-locales.js"></script>
+    <script src="moment-timezone-with-data-10-year-range.js"></script>
 <BODY>
 <!-- The text field -->
-<INPUT id="date_field" type="text" size="50">
+<INPUT id="date_field" type="text" size="23">
 <!-- The button used to copy the text -->
 <BUTTON onclick="copyToClipboard()">Update and Copy</BUTTON>
 <SCRIPT>
@@ -30,24 +35,22 @@ http-equiv="X-UA-Compatible">
    }
 
    function write_date() {
+     var timezonecode = moment.tz(moment.tz.guess()).zoneAbbr();
      var ampm = "";
      var d       = new Date();
      var year    = d.getFullYear();
-     var month   = String(d.getMonth() + 1);
-     month = add_leading_zero(month);  
-     var date    = String(d.getDate());
-     date = add_leading_zero(date);  
+     var month   = add_leading_zero(String(d.getMonth() + 1));  
+     var date    = add_leading_zero(String(d.getDate()));  
      var hours   = d.getHours();
      if (hours > 12) {
        hours = (hours - 12);
-       ampm = "pm"
+       ampm  = "pm"
      } else {
-       ampm = "am";
+       ampm  = "am";
        hours = (hours === 0 ) ? hours = 12 : hours; 
      }
-     var minutes = String(d.getMinutes());
-     minutes = add_leading_zero(minutes); 
-     var date_string = date + "/" + month + "/" + year + " " + hours + ":" + minutes + " " + ampm + " PST";
+     var minutes = add_leading_zero(String(d.getMinutes())); 
+     var date_string = date + "/" + month + "/" + year + " " + hours + ":" + minutes + " " + ampm + " " + timezonecode;
      document.getElementById("date_field").value = date_string;
    }
 
