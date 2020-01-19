@@ -1,20 +1,40 @@
-<!DOCTYPE html PUBLIC "" "">
-<HTML><HEAD>
+<!DOCTYPE html>
+<html lang="en">
+  <HEAD>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-<META content="IE=11.0000"
-http-equiv="X-UA-Compatible">
-<META http-equiv="Content-Type" content="text/html; charset=windows-1252">
-<LINK href="date2_files/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh">
-<META name="GENERATOR" content="MSHTML 11.00.10570.1001"></HEAD>
+
     <script src="moment-with-locales.js"></script>
     <script src="moment-timezone-with-data-10-year-range.js"></script>
+
+  <style>
+    #button {
+      background-color: #007bff;
+      color:#fff;
+      font-weight: 400;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: middle;
+    user-select: none;
+    border: 1px solid transparent;
+    padding: .375rem .75rem;
+    font-size: 1rem;
+    line-height: 1.5;
+    border-radius: .25rem;
+    transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+    }
+  </style>
+
+  </HEAD>
 <BODY>
-<!-- The text field -->
-<INPUT id="date_field" type="text" size="23">
-<!-- The button used to copy the text -->
-<BUTTON onclick="copyToClipboard()">Update and Copy</BUTTON>
+  <div>
+    <!-- The text field -->
+    <INPUT id="date_field" type="text" size="23">
+    <!-- The button used to copy the text -->
+    <BUTTON id="button" type="button" class="btn btn-primary" onclick="copyToClipboard()">Update and Copy</BUTTON>
+
+  </div>
 <SCRIPT>
 /* Copy date and time to clipboard. */ 
 /* Author: Scott Morgan (scott@scottmorgan.ca), January 7, 2020. */ 
@@ -53,6 +73,7 @@ http-equiv="X-UA-Compatible">
      var minutes = add_leading_zero(String(d.getMinutes())); 
      var date_string = date + "/" + month + "/" + year + " " + hours + ":" + minutes + " " + ampm + " " + timezonecode;
      document.getElementById("date_field").value = date_string;
+    //  document.getElementById("button").innerHTML = date_string;
    }
 
    function add_leading_zero(date_element) {
